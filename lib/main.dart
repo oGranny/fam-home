@@ -1,6 +1,5 @@
 import 'package:fam_home/pages/home_page.dart';
 import 'package:fam_home/utils/themedata.dart';
-import 'package:fam_home/widgets/fam_app_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Fam Home',
       theme: themedata,
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

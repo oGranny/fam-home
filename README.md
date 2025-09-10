@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+- Not sure what components[] and positional_images[] are for in BaseCard.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
