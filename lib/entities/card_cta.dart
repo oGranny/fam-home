@@ -4,17 +4,17 @@ class CardCta {
   final String text;
   final String type;
   final Color? color;
-  final bool? isCircular;
+  final bool isCircular;
   final int? strokeWidth;
-  final bool? isSecondary;
+  final bool isSecondary;
 
   CardCta({
     required this.text,
     required this.type,
     this.color,
-    this.isCircular,
+    required this.isCircular,
     this.strokeWidth,
-    this.isSecondary,
+    required this.isSecondary,
   });
 
   factory CardCta.fromJson(Map<String, dynamic> json) {
@@ -28,9 +28,9 @@ class CardCta {
                     0xFF000000,
               )
               : null,
-      isCircular: json['is_circular'] as bool?,
-      strokeWidth: json['stroke_width'] as int?,
-      isSecondary: json['is_secondary'] as bool?,
+      isCircular: json['is_circular'] as bool,
+      strokeWidth: json['stroke_width'] as int,
+      isSecondary: json['is_secondary'] as bool,
     );
   }
 }

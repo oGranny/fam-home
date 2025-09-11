@@ -50,7 +50,9 @@ class TextEntity {
       text: map['text'],
       color:
           map['color'] != null
-              ? Color(int.parse(map['color'].substring(1), radix: 16))
+              ? Color(
+                int.parse(map['color'].substring(1), radix: 16) + 0xFF000000,
+              )
               : null,
       fontSize: map['font_size']?.toDouble(),
       fontStyle: map['font_style'],

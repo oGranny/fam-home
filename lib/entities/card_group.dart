@@ -1,6 +1,6 @@
 import 'package:fam_home/entities/base_card.dart';
 
-abstract class CardGroup {
+abstract class CardEntity {
   final int id;
   final String name;
   final String designType;
@@ -12,7 +12,7 @@ abstract class CardGroup {
   final int? height;
   final List<BaseCard> cards;
 
-  CardGroup({
+  CardEntity({
     required this.id,
     required this.name,
     required this.designType,
