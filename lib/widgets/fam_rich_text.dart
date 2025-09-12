@@ -25,6 +25,7 @@ class FamRichText extends StatelessWidget {
               color: Colors.white,
               fontSize: 30,
               fontWeight: FontWeight.w600,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         );
@@ -38,6 +39,7 @@ class FamRichText extends StatelessWidget {
               color: e.color ?? Colors.black,
               fontSize: e.fontSize ?? 17,
               fontWeight: e.fontWeight,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         );

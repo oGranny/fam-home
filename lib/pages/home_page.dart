@@ -9,7 +9,7 @@ import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -109,8 +109,76 @@ class _HomePageState extends State<HomePage> {
         "is_shareable": false,
         "is_internal": false,
       },
+      {
+        "id": 3,
+        "name": "smallCardWithArrow",
+        "slug": "smallCardWithArrow",
+        "title": "Hello World",
+        "formatted_title": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Small card with arrow ",
+              "type": "generic_text",
+              "color": "#000000",
+              // "font_size": 17,
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+          ],
+        },
+        "icon": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/5435b4ee-a962-4531-95d5-889e4038eece-1734193661283.webp",
+          "aspect_ratio": 1,
+        },
+        "positional_images": [],
+        "components": [],
+        "url": "https://google.com",
+        "bg_color": "#FBAF03",
+        "icon_size": 16,
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+      {
+        "id": 3,
+        "name": "smallCardWithArrow",
+        "slug": "smallCardWithArrow",
+        "title": "Hello World",
+        "formatted_title": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Small card with arrow ",
+              "type": "generic_text",
+              "color": "#000000",
+              // "font_size": 17,
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+          ],
+        },
+        "icon": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/5435b4ee-a962-4531-95d5-889e4038eece-1734193661283.webp",
+          "aspect_ratio": 1,
+        },
+        "positional_images": [],
+        "components": [],
+        "url": "https://google.com",
+        "bg_color": "#FBAF03",
+        "icon_size": 16,
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
     ],
-    "is_scrollable": false,
+    "is_scrollable": true,
     "height": 32,
     "is_full_width": true,
     "level": 1,
@@ -174,8 +242,60 @@ class _HomePageState extends State<HomePage> {
         "is_shareable": false,
         "is_internal": false,
       },
+      {
+        "id": 2,
+        "name": "Test hcc",
+        "slug": "Testhccwithaction",
+        "title":
+            "Big display card\nwith action\nThis is a sample text for the subtitle that you can add to contextual cards",
+        "formatted_title": {
+          "text": "{}\nwith action\n{}",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Big display card",
+              "type": "generic_text",
+              "color": "#FBAF03",
+              "font_size": 30,
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+            {
+              "text":
+                  "This is a sample text for the subtitle that you can add to contextual cards",
+              "type": "generic_text",
+              "color": "#ffffff",
+              "font_size": 16,
+              "font_style": "underline",
+              "font_family": "met_regular",
+            },
+          ],
+        },
+        "positional_images": [],
+        "components": [],
+        "url": "https://google.com",
+        "bg_image": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/70db327c-b5a0-4485-b97d-6b5eae1f1614-1734193722611.webp",
+          "aspect_ratio": 0.9142857,
+        },
+        "cta": [
+          {
+            "text": "Action",
+            "type": "normal",
+            "bg_color": "#000000",
+            "is_circular": false,
+            "is_secondary": false,
+            "stroke_width": 0,
+          },
+        ],
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
     ],
-    "is_scrollable": false,
+    "is_scrollable": true,
     "height": 600,
     "is_full_width": false,
     "slug": "Cardwithaction",
@@ -216,8 +336,36 @@ class _HomePageState extends State<HomePage> {
         "is_shareable": false,
         "is_internal": false,
       },
+      {
+        "id": 4,
+        "name": "stsMonkey",
+        "slug": "stsMonkey",
+        "title": "\n",
+        "formatted_title": {
+          "text": "{}\n",
+          "align": "center",
+          "entities": [
+            {
+              "type": "generic_text",
+              "font_style": "underline",
+              "font_family": "met_regular",
+            },
+          ],
+        },
+        "positional_images": [],
+        "components": [],
+        "bg_image": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/055c4856-53fc-41a1-8a30-354abfaa270c-1734193759460.webp",
+          "aspect_ratio": 2.406015,
+        },
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
     ],
-    "is_scrollable": false,
+    "is_scrollable": true,
     "is_full_width": true,
     "slug": "hc5Images",
     "level": 2,
@@ -381,8 +529,41 @@ class _HomePageState extends State<HomePage> {
         "is_shareable": false,
         "is_internal": false,
       },
+      {
+        "id": 3,
+        "name": "smallCardWithArrow",
+        "slug": "smallCardWithArrow",
+        "title": " ",
+        "formatted_title": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Small card with an arrow ",
+              "type": "generic_text",
+              "color": "#000000",
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+          ],
+        },
+        "icon": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/5435b4ee-a962-4531-95d5-889e4038eece-1734193661283.webp",
+          "aspect_ratio": 1,
+        },
+        "positional_images": [],
+        "components": [],
+        "url": "https://google.com",
+        "bg_color": "#FBAF03",
+        "icon_size": 16,
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
     ],
-    "is_scrollable": true,
+    "is_scrollable": false,
     "height": 64,
     "is_full_width": false,
     "level": 4,

@@ -11,9 +11,50 @@ class HC5Container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: HC5Card(cardData: cardGroup.cards.first),
+    final PageController pageController = PageController();
+
+    return SizedBox(
+      width: cardGroup.isFullWidth ? double.infinity : null,
+      child:
+          cardGroup.cards.length > 1 && cardGroup.isScrollable
+              ? AspectRatio(
+                aspectRatio: cardGroup.cards[0].bgImage!.aspectRatio + .05,
+                child: PageView.builder(
+                  controller: pageController,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: cardGroup.cards.length,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                        child: HC5Card(cardData: cardGroup.cards[index]),
+                      ),
+                    );
+                  },
+                ),
+              )
+              : cardGroup.cards.length > 1 && !cardGroup.isScrollable
+              ? ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: cardGroup.cards.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 8.0,
+                    ),
+                    child: HC5Card(cardData: cardGroup.cards[index]),
+                  );
+                },
+              )
+              : Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 8.0,
+                ),
+                child: HC5Card(cardData: cardGroup.cards[0]),
+              ),
     );
   }
 }

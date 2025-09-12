@@ -6,7 +6,7 @@ import 'package:fam_home/widgets/hidden_button.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HC3Container extends StatelessWidget {
+class HC3Container extends StatefulWidget {
   final CardEntity cardGroup;
   final VoidCallback? onDismiss;
   const HC3Container({super.key, required this.cardGroup, this.onDismiss});
@@ -14,12 +14,65 @@ class HC3Container extends StatelessWidget {
   int get id => cardGroup.id;
 
   @override
+  State<HC3Container> createState() => _HC3ContainerState();
+}
+
+class _HC3ContainerState extends State<HC3Container> {
+  void onCardRemoved(int index, PageController pageController) async {
+    if (widget.cardGroup.cards.length == 1) {
+      widget.onDismiss!();
+    } else {
+      int newIndex =
+          index < widget.cardGroup.cards.length - 1 ? index + 1 : index - 1;
+      await pageController.animateTo(
+        pageController.position.viewportDimension * newIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() {
+        widget.cardGroup.cards.removeAt(index);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: cardGroup.height?.toDouble(),
-      width: cardGroup.isFullWidth ? double.infinity : null,
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: HC3Card(cardData: cardGroup.cards[0], onDismiss: onDismiss),
+    final PageController pageController = PageController();
+
+    return SizedBox(
+      width: widget.cardGroup.isFullWidth ? double.infinity : null,
+      child:
+          widget.cardGroup.cards.length > 1 && widget.cardGroup.isScrollable
+              ? AspectRatio(
+                aspectRatio:
+                    widget.cardGroup.cards[0].bgImage!.aspectRatio + .05,
+                child: PageView.builder(
+                  controller: pageController,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: widget.cardGroup.cards.length,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                        child: HC3Card(
+                          cardData: widget.cardGroup.cards[index],
+                          onDismiss: () => onCardRemoved(index, pageController),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+              : Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 8.0,
+                ),
+                child: HC3Card(
+                  cardData: widget.cardGroup.cards[0],
+                  onDismiss: widget.onDismiss,
+                ),
+              ),
     );
   }
 }
@@ -65,6 +118,9 @@ class _HC3CardState extends State<HC3Card> {
                     icon: Image.asset("assets/bell_icon.png"),
                     onPressed: () {
                       if (widget.onDismiss != null) {
+                        setState(() {
+                          _shiftTriggered = !_shiftTriggered;
+                        });
                         widget.onDismiss!();
                       }
                     },

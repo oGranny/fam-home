@@ -14,20 +14,55 @@ class HC1Container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: cardGroup.height?.toDouble(),
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
       height:
-          cardGroup.height?.toDouble() != null
-              ? (cardGroup.height! * 1.5)
-              : null,
-      child: HC1Card(cardData: cardGroup.cards[0]),
+          cardGroup.height != null &&
+                  (cardGroup.isScrollable && cardGroup.cards.length > 1)
+              ? (cardGroup.height! * 1.5).toDouble()
+              : (cardGroup.height! * 1.5).toDouble() *
+                  (cardGroup.cards.length / 2).ceil(),
+      child:
+          (cardGroup.isScrollable || cardGroup.cards.length == 1)
+              ? ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: cardGroup.cards.length,
+                itemBuilder: (context, index) {
+                  return HC1Card(
+                    cardData: cardGroup.cards[index],
+                    isSingle: cardGroup.cards.length == 1,
+                  );
+                },
+              )
+              : LayoutBuilder(
+                builder: (context, constraints) {
+                  return GridView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 2.5,
+                    ),
+                    itemCount: cardGroup.cards.length,
+                    itemBuilder: (context, index) {
+                      return HC1Card(
+                        cardData: cardGroup.cards[index],
+                        isSingle: false,
+                      );
+                    },
+                  );
+                },
+              ),
     );
   }
 }
 
 class HC1Card extends StatelessWidget {
   final BaseCard cardData;
-  const HC1Card({super.key, required this.cardData});
+  final bool isSingle;
+  const HC1Card({super.key, required this.cardData, required this.isSingle});
 
   @override
   Widget build(BuildContext context) {
@@ -38,46 +73,67 @@ class HC1Card extends StatelessWidget {
           launchUrl(url);
         }
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: cardData.bgColor ?? Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.network(
-              cardData.icon!.url,
-              width:
-                  cardData.iconSize?.toDouble() != null
-                      ? cardData.iconSize!.toDouble() * 2.5
-                      : null,
-              height:
-                  cardData.iconSize?.toDouble() != null
-                      ? cardData.iconSize!.toDouble() * 2.5
-                      : null,
-              fit: BoxFit.cover,
+      child: Padding(
+        padding:
+            isSingle
+                ? const EdgeInsets.all(0.0)
+                : const EdgeInsets.only(right: 12.0),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            constraints: BoxConstraints(
+              maxWidth:
+                  MediaQuery.of(context).size.width * (isSingle ? 0.9 : 0.7),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.04),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FamRichText(
-                    formattedText: cardData.formattedTitle!,
-                    allowedLines: 1,
-                  ),
-                  FamRichText(
-                    formattedText: cardData.formattedDescription!,
-                    allowedLines: 1,
-                  ),
-                ],
-              ),
+            decoration: BoxDecoration(
+              color: cardData.bgColor ?? Colors.white,
+              borderRadius: BorderRadius.circular(16),
             ),
-          ],
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.network(
+                  cardData.icon!.url,
+                  width:
+                      cardData.iconSize?.toDouble() != null
+                          ? cardData.iconSize!.toDouble() * 2.5
+                          : null,
+                  height:
+                      cardData.iconSize?.toDouble() != null
+                          ? cardData.iconSize!.toDouble() * 2.5
+                          : null,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            FamRichText(
+                              formattedText: cardData.formattedTitle!,
+                              allowedLines: 1,
+                            ),
+                            if (cardData.formattedDescription != null)
+                              FamRichText(
+                                formattedText: cardData.formattedDescription!,
+                                allowedLines: 1,
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
