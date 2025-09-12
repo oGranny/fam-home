@@ -1,17 +1,15 @@
 import 'package:fam_home/entities/base_card.dart';
 import 'package:fam_home/entities/card_group.dart';
-import 'package:fam_home/widgets/action_button.dart';
 import 'package:fam_home/widgets/cards/big_display_card.dart';
 import 'package:fam_home/widgets/cards/dynamic_width_scrollable_card.dart';
 import 'package:fam_home/widgets/fam_app_bar.dart';
-import 'package:fam_home/widgets/fam_rich_text.dart';
 import 'package:fam_home/widgets/cards/image_card.dart';
 import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  BaseCard sampleCard = BaseCard.fromJson({
+  final BaseCard sampleCard = BaseCard.fromJson({
     "id": 2,
     "name": "Test hcc",
     "slug": "Testhccwithaction",
@@ -64,7 +62,7 @@ class HomePage extends StatelessWidget {
     "is_internal": false,
   });
 
-  CardEntity hc6Card = CardEntity.fromJson({
+  final CardEntity hc6Card = CardEntity.fromJson({
     "id": 77,
     "name": "hc6Small",
     "design_type": "HC6",
@@ -111,7 +109,7 @@ class HomePage extends StatelessWidget {
     "level": 1,
   });
 
-  CardEntity hc3entity = CardEntity.fromJson({
+  final CardEntity hc3entity = CardEntity.fromJson({
     "id": 76,
     "name": "cardwithaction",
     "design_type": "HC3",
@@ -177,7 +175,7 @@ class HomePage extends StatelessWidget {
     "level": 0,
   });
 
-  CardEntity hc5entity = CardEntity.fromJson({
+  final CardEntity hc5entity = CardEntity.fromJson({
     "id": 78,
     "name": "hc5Images",
     "design_type": "HC5",
@@ -218,7 +216,7 @@ class HomePage extends StatelessWidget {
     "level": 2,
   });
 
-  CardEntity hc9entity = CardEntity.fromJson({
+  final CardEntity hc9entity = CardEntity.fromJson({
     "id": 79,
     "name": "hc9GradientHCG",
     "design_type": "HC9",

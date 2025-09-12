@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HC6Container extends StatelessWidget {
-  CardEntity cardGroup;
-  HC6Container({super.key, required this.cardGroup});
+  final CardEntity cardGroup;
+  const HC6Container({super.key, required this.cardGroup});
 
   @override
   Widget build(BuildContext context) {
