@@ -7,7 +7,7 @@ A new Flutter project.
 - if height is given to widget with image, it would change the aspect ratio or wont show the complete image (as in case of HC3), if image is present and full width is there keeping the height of card equal to the height of child image.
     - HC3: Did not consider height in HC3, took image height for preserving aspect ratio
     - HC6: scaled height by factor of 3, scaled icon in it by a factor of 2.5.
-
+    - HC9: scaled height by factor of 1.2
 ## Getting Started
 
 This project is a starting point for a Flutter application.

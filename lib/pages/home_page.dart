@@ -2,6 +2,7 @@ import 'package:fam_home/entities/base_card.dart';
 import 'package:fam_home/entities/card_group.dart';
 import 'package:fam_home/widgets/action_button.dart';
 import 'package:fam_home/widgets/cards/big_display_card.dart';
+import 'package:fam_home/widgets/cards/dynamic_width_scrollable_card.dart';
 import 'package:fam_home/widgets/fam_app_bar.dart';
 import 'package:fam_home/widgets/fam_rich_text.dart';
 import 'package:fam_home/widgets/cards/image_card.dart';
@@ -217,16 +218,92 @@ class HomePage extends StatelessWidget {
     "level": 2,
   });
 
+  CardEntity hc9entity = CardEntity.fromJson({
+    "id": 79,
+    "name": "hc9GradientHCG",
+    "design_type": "HC9",
+    "card_type": 1,
+    "cards": [
+      {
+        "id": 5,
+        "name": "yellowGradient",
+        "slug": "yellow_gradient",
+        "positional_images": [],
+        "components": [],
+        "bg_image": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/6519c154-0d95-418a-941e-95244edd171c-1734194242075.webp",
+          "aspect_ratio": 0.3282,
+        },
+        "bg_gradient": {
+          "angle": 336,
+          "colors": ["#FBAF03", "#FFD428"],
+        },
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+      {
+        "id": 6,
+        "name": "dayLightGradient",
+        "slug": "dayLightGradient",
+        "positional_images": [],
+        "components": [],
+        "bg_image": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/f4153522-cad5-4248-a787-788aee5f7811-1734194287612.webp",
+          "aspect_ratio": 0.5487,
+        },
+        "bg_gradient": {
+          "angle": 336,
+          "colors": ["#FF8749", "#454AA6"],
+        },
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+      {
+        "id": 7,
+        "name": "greenGradient",
+        "slug": "green-gradient",
+        "positional_images": [],
+        "components": [],
+        "bg_image": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/e4daab01-63dc-49fe-8154-33b17815dad3-1734194359153.webp",
+          "aspect_ratio": 1,
+        },
+        "bg_gradient": {
+          "angle": 336,
+          "colors": ["#000000", "#28FFA5"],
+        },
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+    ],
+    "is_scrollable": false,
+    "height": 195,
+    "is_full_width": false,
+    "slug": "hc9GradientHCG",
+    "level": 3,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FamAppBar(),
       backgroundColor: const Color(0xFFF7F6F3),
+      // backgroundColor: Colors.amberAccent,
       body: ListView(
         children: [
           HC3Container(cardGroup: hc3entity),
           HC6Container(cardGroup: hc6Card),
           HC5Container(cardGroup: hc5entity),
+          HC9Container(cardGroup: hc9entity),
         ],
       ),
     );
