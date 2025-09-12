@@ -65,6 +65,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FamAppBar(),
+      backgroundColor: const Color(0xFFF7F6F3),
       body: ListView(children: [HC3Card(cardData: sampleCard)]),
     );
   }
