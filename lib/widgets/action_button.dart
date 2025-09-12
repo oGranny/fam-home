@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
   final CardCta cta;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   const ActionButton({super.key, required this.cta, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        disabledBackgroundColor: (cta.color!.withAlpha(100)),
         backgroundColor: cta.color ?? Theme.of(context).primaryColor,
         shape:
             cta.isCircular

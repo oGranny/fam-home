@@ -13,7 +13,7 @@ class CardGraphic {
     return CardGraphic(
       url: json['image_url'] as String,
       imageType: json['image_type'] as String,
-      aspectRatio: json['aspect_ratio'] as double,
+      aspectRatio: (json['aspect_ratio'] as num).toDouble(),
     );
   }
 }

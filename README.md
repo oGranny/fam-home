@@ -3,6 +3,10 @@
 A new Flutter project.
 
 - Not sure what components[] and positional_images[] are for in BaseCard.
+- height is too big, 600 covers almost entire screen, scaled it down.
+- if height is given to widget with image, it would change the aspect ratio or wont show the complete image (as in case of HC3), if image is present and full width is there keeping the height of card equal to the height of child image.
+    - HC3: Did not consider height in HC3, took image height for preserving aspect ratio
+    - HC6: scaled height by factor of 3, scaled icon in it by a factor of 2.5.
 
 ## Getting Started
 

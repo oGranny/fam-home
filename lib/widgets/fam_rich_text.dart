@@ -12,7 +12,7 @@ class FamRichText extends StatelessWidget {
     int entityIndex = 0;
     for (int i = 0; i < parts.length; i++) {
       final plain = parts[i];
-      if (plain.isNotEmpty) {
+      if (plain.trim().isNotEmpty) {
         spans.add(
           TextSpan(
             text: plain,
@@ -31,7 +31,7 @@ class FamRichText extends StatelessWidget {
             text: e.text ?? "",
             style: TextStyle(
               color: e.color ?? Colors.black,
-              fontSize: e.fontSize,
+              fontSize: e.fontSize ?? 17,
               fontWeight: e.fontWeight,
             ),
           ),

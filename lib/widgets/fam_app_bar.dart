@@ -15,14 +15,14 @@ class FamAppBar extends StatelessWidget implements PreferredSizeWidget {
           RichText(
             text: TextSpan(
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 25,
                 color: Colors.black87,
                 fontWeight: FontWeight.w500,
               ),
               children: [
                 const TextSpan(text: "fampay"),
                 WidgetSpan(
-                  child: Image.asset("assets/logo.png", height: 25),
+                  child: Image.asset("assets/logo.png", height: 30),
                   alignment: PlaceholderAlignment.top,
                 ),
               ],
