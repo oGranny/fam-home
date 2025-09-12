@@ -6,6 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 class HC9Container extends StatelessWidget {
   final CardEntity cardGroup;
   const HC9Container({super.key, required this.cardGroup});
+  int get level => cardGroup.level;
+  int get id => cardGroup.id;
 
   @override
   Widget build(BuildContext context) {

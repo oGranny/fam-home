@@ -8,8 +8,14 @@ import 'package:fam_home/widgets/cards/image_card.dart';
 import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final BaseCard sampleCard = BaseCard.fromJson({
     "id": 2,
     "name": "Test hcc",
@@ -382,20 +388,47 @@ class HomePage extends StatelessWidget {
     "level": 4,
   });
 
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+  late List<Widget> _cards;
+  @override
+  void initState() {
+    super.initState();
+    _cards = [
+      HC3Container(
+        cardGroup: hc3entity,
+        onDismiss: () => _removeHC3Section(hc3entity.id),
+      ),
+      HC6Container(cardGroup: hc6Card),
+      HC5Container(cardGroup: hc5entity),
+      HC9Container(cardGroup: hc9entity),
+      HC1Container(cardGroup: hc1entity),
+    ];
+  }
+
+  void _removeHC3Section(int id) {
+    final index = _cards.indexWhere((w) => w is HC3Container && w.id == id);
+    if (index != -1) {
+      final removedItem = _cards.removeAt(index);
+      _listKey.currentState?.removeItem(
+        index,
+        (context, animation) =>
+            SizeTransition(sizeFactor: animation, child: removedItem),
+        duration: const Duration(milliseconds: 300),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FamAppBar(),
       backgroundColor: const Color(0xFFF7F6F3),
-      // backgroundColor: Colors.amberAccent,
-      body: ListView(
-        children: [
-          HC3Container(cardGroup: hc3entity),
-          HC6Container(cardGroup: hc6Card),
-          HC5Container(cardGroup: hc5entity),
-          HC9Container(cardGroup: hc9entity),
-          HC1Container(cardGroup: hc1entity),
-        ],
+      body: AnimatedList(
+        key: _listKey,
+        initialItemCount: _cards.length,
+        itemBuilder: (context, index, animation) {
+          return SizeTransition(sizeFactor: animation, child: _cards[index]);
+        },
       ),
     );
   }

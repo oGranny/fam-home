@@ -8,8 +8,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HC3Container extends StatelessWidget {
   final CardEntity cardGroup;
-  const HC3Container({super.key, required this.cardGroup});
+  final VoidCallback? onDismiss;
+  const HC3Container({super.key, required this.cardGroup, this.onDismiss});
   int get level => cardGroup.level;
+  int get id => cardGroup.id;
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +19,16 @@ class HC3Container extends StatelessWidget {
       // height: cardGroup.height?.toDouble(),
       width: cardGroup.isFullWidth ? double.infinity : null,
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: HC3Card(cardData: cardGroup.cards[0]),
+      child: HC3Card(cardData: cardGroup.cards[0], onDismiss: onDismiss),
     );
   }
 }
 
 class HC3Card extends StatefulWidget {
   final BaseCard cardData;
+  final VoidCallback? onDismiss;
 
-  const HC3Card({super.key, required this.cardData});
+  const HC3Card({super.key, required this.cardData, this.onDismiss});
 
   @override
   State<HC3Card> createState() => _HC3CardState();
@@ -60,12 +63,20 @@ class _HC3CardState extends State<HC3Card> {
                   HiddenButton(
                     text: "remind later",
                     icon: Image.asset("assets/bell_icon.png"),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (widget.onDismiss != null) {
+                        widget.onDismiss!();
+                      }
+                    },
                   ),
                   HiddenButton(
                     text: "Hidden",
                     icon: Image.asset("assets/close_icon.png"),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (widget.onDismiss != null) {
+                        widget.onDismiss!();
+                      }
+                    },
                   ),
                 ],
               ),

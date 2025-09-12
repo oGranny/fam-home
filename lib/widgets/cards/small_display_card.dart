@@ -8,6 +8,9 @@ class HC1Container extends StatelessWidget {
   final CardEntity cardGroup;
   const HC1Container({super.key, required this.cardGroup});
 
+  int get level => cardGroup.level;
+  int get id => cardGroup.id;
+
   @override
   Widget build(BuildContext context) {
     return Container(
