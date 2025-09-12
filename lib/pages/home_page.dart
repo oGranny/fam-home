@@ -90,34 +90,44 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: FamAppBar(),
       backgroundColor: const Color(0xFFF7F6F3),
-      body:
-          !_errWhileLoading
-              ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.error_outline, size: 70, color: Colors.red),
-                    SizedBox(height: 20),
-                    Text(
-                      'Error loading data, please refresh',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              )
-              : !_isLoading
-              ? AnimatedList(
-                key: _listKey,
-                initialItemCount: _cards.length,
-                itemBuilder: (context, index, animation) {
-                  return SizeTransition(
-                    sizeFactor: animation,
-                    child: _cards[index],
-                  );
-                },
-              )
-              : Center(child: CircularProgressIndicator()),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _cards.clear();
+          setState(() {
+            _isLoading = true;
+            _errWhileLoading = false;
+          });
+          await _fetchData();
+        },
+        child:
+            _errWhileLoading
+                ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.error_outline, size: 70, color: Colors.red),
+                      SizedBox(height: 20),
+                      Text(
+                        'Error loading data, please refresh',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                )
+                : !_isLoading
+                ? AnimatedList(
+                  key: _listKey,
+                  initialItemCount: _cards.length,
+                  itemBuilder: (context, index, animation) {
+                    return SizeTransition(
+                      sizeFactor: animation,
+                      child: _cards[index],
+                    );
+                  },
+                )
+                : Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }
