@@ -4,24 +4,27 @@ import 'package:fam_home/widgets/fam_rich_text.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HC6Container extends StatelessWidget {
+class HC1Container extends StatelessWidget {
   final CardEntity cardGroup;
-  const HC6Container({super.key, required this.cardGroup});
+  const HC1Container({super.key, required this.cardGroup});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
+      // height: cardGroup.height?.toDouble(),
+      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
       height:
-          cardGroup.height != null ? (cardGroup.height! * 3).toDouble() : null,
-      child: HC6Card(cardData: cardGroup.cards.first),
+          cardGroup.height?.toDouble() != null
+              ? (cardGroup.height! * 1.5)
+              : null,
+      child: HC1Card(cardData: cardGroup.cards[0]),
     );
   }
 }
 
-class HC6Card extends StatelessWidget {
+class HC1Card extends StatelessWidget {
   final BaseCard cardData;
-  const HC6Card({super.key, required this.cardData});
+  const HC1Card({super.key, required this.cardData});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +39,7 @@ class HC6Card extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         width: double.infinity,
         decoration: BoxDecoration(
-          // color: cardData.bgColor ?? Colors.white, // BG color does not match design
-          color: Colors.white,
+          color: cardData.bgColor ?? Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -58,12 +60,17 @@ class HC6Card extends StatelessWidget {
             ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.04),
             Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FamRichText(formattedText: cardData.formattedTitle!),
-                  Icon(Icons.arrow_forward_ios_rounded, color: Colors.black),
+                  FamRichText(
+                    formattedText: cardData.formattedTitle!,
+                    allowedLines: 1,
+                  ),
+                  FamRichText(
+                    formattedText: cardData.formattedDescription!,
+                    allowedLines: 1,
+                  ),
                 ],
               ),
             ),

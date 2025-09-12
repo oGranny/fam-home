@@ -83,9 +83,9 @@ class _HC3CardState extends State<HC3Card> {
                 child: Container(
                   width: width,
                   height: height,
-                  decoration: BoxDecoration(
-                    color: widget.cardData.bgColor ?? Colors.transparent,
 
+                  decoration: BoxDecoration(
+                    color: widget.cardData.bgColor ?? Colors.grey,
                     image:
                         widget.cardData.bgImage?.url != null
                             ? DecorationImage(

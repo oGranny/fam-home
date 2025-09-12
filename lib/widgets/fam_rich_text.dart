@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 class FamRichText extends StatelessWidget {
   final FormattedText formattedText;
-  const FamRichText({super.key, required this.formattedText});
+  final int allowedLines;
+  const FamRichText({
+    super.key,
+    required this.formattedText,
+    this.allowedLines = 5,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,7 @@ class FamRichText extends StatelessWidget {
               children: spans,
             ),
             overflow: TextOverflow.ellipsis,
-            maxLines: 5,
+            maxLines: allowedLines,
           ),
         );
       },

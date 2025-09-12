@@ -2,6 +2,7 @@ import 'package:fam_home/entities/base_card.dart';
 import 'package:fam_home/entities/card_group.dart';
 import 'package:fam_home/widgets/cards/big_display_card.dart';
 import 'package:fam_home/widgets/cards/dynamic_width_scrollable_card.dart';
+import 'package:fam_home/widgets/cards/small_display_card.dart';
 import 'package:fam_home/widgets/fam_app_bar.dart';
 import 'package:fam_home/widgets/cards/image_card.dart';
 import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
@@ -290,6 +291,97 @@ class HomePage extends StatelessWidget {
     "level": 3,
   });
 
+  final CardEntity hc1entity = CardEntity.fromJson({
+    "id": 80,
+    "name": "DisplayCards",
+    "design_type": "HC1",
+    "card_type": 1,
+    "cards": [
+      {
+        "id": 9,
+        "name": "aStark",
+        "slug": "aStark",
+        "title": " ",
+        "formatted_title": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Small display card",
+              "type": "generic_text",
+              "color": "#000000",
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+          ],
+        },
+        "description": " ",
+        "formatted_description": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Arya Stark",
+              "type": "generic_text",
+              "color": "#000000",
+              "font_style": "underline",
+              "font_family": "met_regular",
+            },
+          ],
+        },
+        "icon": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/b4827462-93a9-4963-98b9-255942f10530-1734193289680.webp",
+          "aspect_ratio": 1,
+        },
+        "positional_images": [],
+        "components": [],
+        "bg_color": "#FBAF03",
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+      {
+        "id": 3,
+        "name": "smallCardWithArrow",
+        "slug": "smallCardWithArrow",
+        "title": " ",
+        "formatted_title": {
+          "text": " ",
+          "align": "left",
+          "entities": [
+            {
+              "text": "Small card with an arrow ",
+              "type": "generic_text",
+              "color": "#000000",
+              "font_style": "underline",
+              "font_family": "met_semi_bold",
+            },
+          ],
+        },
+        "icon": {
+          "image_type": "ext",
+          "image_url":
+              "https://hok.famapp.co.in/hok-assets/feedMedia/ext/5435b4ee-a962-4531-95d5-889e4038eece-1734193661283.webp",
+          "aspect_ratio": 1,
+        },
+        "positional_images": [],
+        "components": [],
+        "url": "https://google.com",
+        "bg_color": "#FBAF03",
+        "icon_size": 16,
+        "is_disabled": false,
+        "is_shareable": false,
+        "is_internal": false,
+      },
+    ],
+    "is_scrollable": true,
+    "height": 64,
+    "is_full_width": false,
+    "level": 4,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -302,6 +394,7 @@ class HomePage extends StatelessWidget {
           HC6Container(cardGroup: hc6Card),
           HC5Container(cardGroup: hc5entity),
           HC9Container(cardGroup: hc9entity),
+          HC1Container(cardGroup: hc1entity),
         ],
       ),
     );

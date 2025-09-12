@@ -2,9 +2,9 @@ import 'package:fam_home/entities/base_card.dart';
 
 class CardEntity {
   final int id;
-  final String name;
-  final String designType;
-  final int cardType;
+  final String? name;
+  final String? designType;
+  final int? cardType;
   final String? slug;
   final bool isScrollable;
   final bool isFullWidth;
@@ -14,9 +14,9 @@ class CardEntity {
 
   CardEntity({
     required this.id,
-    required this.name,
-    required this.designType,
-    required this.cardType,
+    this.name,
+    this.designType,
+    this.cardType,
     this.slug,
     required this.isScrollable,
     required this.isFullWidth,
@@ -28,9 +28,9 @@ class CardEntity {
   factory CardEntity.fromJson(Map<String, dynamic> json) {
     return CardEntity(
       id: json['id'] as int,
-      name: json['name'] as String,
-      designType: json['design_type'] as String,
-      cardType: json['card_type'] as int,
+      name: json['name'] as String?,
+      designType: json['design_type'] as String?,
+      cardType: json['card_type'] as int?,
       slug: json['slug'] as String?,
       isScrollable: json['is_scrollable'] as bool,
       isFullWidth: json['is_full_width'] as bool,
