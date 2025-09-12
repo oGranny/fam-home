@@ -1,11 +1,11 @@
 import 'package:fam_home/entities/base_card.dart';
 import 'package:fam_home/entities/card_group.dart';
 import 'package:fam_home/widgets/action_button.dart';
-import 'package:fam_home/widgets/big_display_card.dart';
+import 'package:fam_home/widgets/cards/big_display_card.dart';
 import 'package:fam_home/widgets/fam_app_bar.dart';
 import 'package:fam_home/widgets/fam_rich_text.dart';
-import 'package:fam_home/widgets/image_card.dart';
-import 'package:fam_home/widgets/small_card_with_arrow.dart';
+import 'package:fam_home/widgets/cards/image_card.dart';
+import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
