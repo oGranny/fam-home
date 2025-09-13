@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class HiddenButton extends StatelessWidget {
   final String text;
-  final Image icon;
-  final void Function()? onPressed;
+  final Widget icon;
+  final VoidCallback? onPressed;
+
   const HiddenButton({
     super.key,
     required this.text,
@@ -13,27 +14,30 @@ class HiddenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed ?? () {},
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        constraints: const BoxConstraints.tightFor(width: 100, height: 80),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            icon,
-            const SizedBox(height: 10),
-            Text(
-              text,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            ),
-          ],
+    return Material(
+      color: Colors.grey.shade200,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              const SizedBox(height: 8),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

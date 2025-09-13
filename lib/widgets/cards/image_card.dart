@@ -1,6 +1,7 @@
 import 'package:fam_home/entities/base_card.dart';
 import 'package:fam_home/entities/card_group.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HC5Container extends StatelessWidget {
@@ -71,6 +72,10 @@ class HC5Card extends StatelessWidget {
           Uri url = Uri.parse(cardData.url!);
           launchUrl(url);
         }
+      },
+      onLongPress: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setStringList('dismissed_cards', []);
       },
       child: Image.network(cardData.bgImage!.url),
     );

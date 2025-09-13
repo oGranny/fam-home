@@ -4,6 +4,7 @@ import 'package:fam_home/widgets/action_button.dart';
 import 'package:fam_home/widgets/fam_rich_text.dart';
 import 'package:fam_home/widgets/hidden_button.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HC3Container extends StatefulWidget {
@@ -111,34 +112,50 @@ class _HC3CardState extends State<HC3Card> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  HiddenButton(
-                    text: "remind later",
-                    icon: Image.asset("assets/bell_icon.png"),
-                    onPressed: () {
-                      if (widget.onDismiss != null) {
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: height * 0.07),
+                    child: HiddenButton(
+                      text: "remind later",
+                      icon: Image.asset("assets/bell_icon.png"),
+                      onPressed: () async {
+                        if (widget.onDismiss != null) {
+                          setState(() {
+                            _shiftTriggered = !_shiftTriggered;
+                          });
+                          widget.onDismiss!();
+                        }
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: height * 0.07),
+                    child: HiddenButton(
+                      text: "dismiss now",
+                      icon: Image.asset("assets/close_icon.png"),
+                      onPressed: () async {
                         setState(() {
                           _shiftTriggered = !_shiftTriggered;
                         });
-                        widget.onDismiss!();
-                      }
-                    },
-                  ),
-                  HiddenButton(
-                    text: "Hidden",
-                    icon: Image.asset("assets/close_icon.png"),
-                    onPressed: () {
-                      if (widget.onDismiss != null) {
-                        widget.onDismiss!();
-                      }
-                    },
+                        final prefs = await SharedPreferences.getInstance();
+                        final id = widget.cardData.id.toString();
+                        final list =
+                            prefs.getStringList('dismissed_cards') ??
+                            <String>[];
+                        if (!list.contains(id)) list.add(id);
+                        await prefs.setStringList('dismissed_cards', list);
+
+                        if (!mounted) return;
+                        widget.onDismiss?.call();
+                      },
+                    ),
                   ),
                 ],
               ),
             ),
             GestureDetector(
-              onTap: () {
+              onLongPress: () {
                 setState(() {
                   _shiftTriggered = !_shiftTriggered;
                 });

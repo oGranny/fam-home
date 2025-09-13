@@ -8,6 +8,7 @@ import 'package:fam_home/widgets/fam_app_bar.dart';
 import 'package:fam_home/widgets/cards/image_card.dart';
 import 'package:fam_home/widgets/cards/small_card_with_arrow.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,16 +32,34 @@ class _HomePageState extends State<HomePage> {
     try {
       final data = await DataService.fetchData(apiUrl);
       final newWidgets = <Widget>[];
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      List<String>? dismissedCards =
+          sharedPreferences.getStringList('dismissed_cards') ?? [];
       for (var item in data) {
         final cardGroup = CardEntity.fromJson(item);
-        newWidgets.add(_stringToWidget(cardGroup.designType!, cardGroup));
+        final isDismissedHC3 =
+            cardGroup.designType == "HC3" &&
+            cardGroup.cards.any(
+              (c) => dismissedCards.contains(c.id.toString()),
+            );
+
+        if (!isDismissedHC3) {
+          newWidgets.add(_stringToWidget(cardGroup.designType!, cardGroup));
+        }
       }
 
-      final startIndex = _cards.length;
+      final len = _cards.length;
+
+      newWidgets.sort((a, b) {
+        int levelA = (a as dynamic).cardGroup.level;
+        int levelB = (b as dynamic).cardGroup.level;
+        return levelA.compareTo(levelB);
+      });
       _cards.addAll(newWidgets);
 
       if (_listKey.currentState != null) {
-        for (var i = startIndex; i < _cards.length; i++) {
+        for (var i = len; i < _cards.length; i++) {
           _listKey.currentState!.insertItem(
             i,
             duration: const Duration(milliseconds: 250),
